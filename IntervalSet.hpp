@@ -2,8 +2,10 @@
 using namespace std;
 using ll=long long;
 
+// 区間をsetで管理するテク
 struct IntervalSet {
     set<pair<ll, ll>> st; // {R, L}の形式で区間を管理する
+    // 区間を追加
     void insert(ll l, ll r) {
         auto itr = st.lower_bound({l, LLONG_MIN});
         if (itr != st.begin()) {
@@ -21,6 +23,7 @@ struct IntervalSet {
         }
         st.insert({r, l});
     }
+    // 区間を削除
     void erase(ll l, ll r) {
         auto itr = st.lower_bound({l, LLONG_MIN});
         vector<pair<ll, ll>> v;
@@ -42,12 +45,15 @@ struct IntervalSet {
             st.insert(v[i]);
         }
     }
+    // 空判定
     bool empty() {
         return st.empty();
     }
+    // 幾つの重複しない区間が登録されているか
     int size() {
         return st.size();
     }
+    // xを含む区間が存在するか
     bool contains(ll x) {
         auto itr = st.lower_bound({x, LLONG_MIN});
 

@@ -17,7 +17,7 @@ struct Trie {
     Trie() : root(0) {
         nodes.push_back(Node(root));
     }
-
+    // 単語を追加
     void insert(const string &word, int word_id) {
         int node_id = 0;
         for (int i = 0;i < word.size();i++) {
@@ -34,9 +34,11 @@ struct Trie {
         ++nodes[node_id].common;
         nodes[node_id].accept.push_back(word_id);
     }
+    // 単語を追加
     void insert(const string &word) {
         insert(word, nodes[0].common);
     }
+    // 単語の存在確認
     bool search(const string &word, bool prefix = false) {
         int node_id = 0;
         for (int i = 0; i < (int)word.size(); i++) {

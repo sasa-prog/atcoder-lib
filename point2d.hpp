@@ -6,14 +6,21 @@ using namespace std;
 struct Point {
     ll x, y;
 };
+// 位置ベクトルの内積を計算する
 ll dot(Point a, Point b) {
     return a.x * b.x + a.y * b.y;
 }
+// 位置ベクトルの外積を計算する
 ll cross(Point a, Point b) {
     return a.x * b.y - a.y * b.x;
 }
+// a-bを計算する
 Point operator-(Point a, Point b) {
     return {a.x - b.x, a.y - b.y};
+}
+// a+bを計算する
+Point operator+(Point a, Point b) {
+    return {a.x + b.x, a.y + b.y};
 }
 
 int ccw(Point a, Point b, Point c) {
