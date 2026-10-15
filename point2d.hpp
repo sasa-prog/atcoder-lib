@@ -23,6 +23,11 @@ Point operator+(Point a, Point b) {
     return {a.x + b.x, a.y + b.y};
 }
 
+
+// aからbに行く場合、cがどちら側にあるか
+// 1の場合、左側にある。
+// 0の場合直線AB上にある。
+// -1の場合直線ABの右側にある
 int ccw(Point a, Point b, Point c) {
     ll v = cross(b - a, c - a);
 
@@ -30,12 +35,13 @@ int ccw(Point a, Point b, Point c) {
     if (v < 0) return -1;
     return 0;
 }
-
+// pが線分ab上にあるかどうか
 bool on_segment(Point a, Point b, Point p) {
     return cross(b - a, p - a) == 0 &&
            min(a.x, b.x) <= p.x && p.x <= max(a.x, b.x) &&
            min(a.y, b.y) <= p.y && p.y <= max(a.y, b.y);
 }
+// 線分abとcdが交差するかどうか
 bool intersect(Point a, Point b, Point c, Point d) {
     int abc = ccw(a, b, c);
     int abd = ccw(a, b, d);
