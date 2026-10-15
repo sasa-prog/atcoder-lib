@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Trie木
 template<int char_size, int base>
 struct Trie {
     struct Node {
