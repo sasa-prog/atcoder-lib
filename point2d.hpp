@@ -5,6 +5,11 @@ using namespace std;
 // 二次元幾何
 struct Point {
     ll x, y;
+    int pos() const {
+    if (y < 0) return -1;
+    if (y == 0 && 0 <= x) return 0;
+        return 1;
+    }
 };
 // 位置ベクトルの内積を計算する
 ll dot(Point a, Point b) {
@@ -59,4 +64,11 @@ bool intersect(Point a, Point b, Point c, Point d) {
     if (cdb == 0 && on_segment(c, d, b)) return true;
 
     return false;
+}
+
+void ArgumentSort(vector<Point> &v) {
+  sort(begin(v), end(v), [](Point a, Point b) {
+    if (a.pos() != b.pos()) return a.pos() < b.pos();
+    return cross(a, b) > 0;
+  });
 }
